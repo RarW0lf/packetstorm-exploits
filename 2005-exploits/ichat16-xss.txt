@@ -1,0 +1,51 @@
+
+# Exploit Title: iChat 1.6 XSS Vunlerability
+# Google Dork:N/A
+# Date: 2020-05-06
+# Exploit Author: @ThelastVvV
+# Vendor Homepage: https://codecanyon.net/item/ichat-realtime-php-live-support-system/20758162?s_rank=2
+# Version: 1.6
+# Tested on: 5.4.0-kali4-amd64
+
+---------------------------------------------------------
+
+
+Summary:
+
+Persistent Cross-site Scripting in iChat Realtime PHP Live Support System  
+
+PoC 1:
+
+
+
+1- Go to the live chat widget and start the chat
+http://example.com/live-chat/
+
+2- In the text  field  type your payload :
+ "><img src=x onerror=prompt(document.domain);>
+ 
+3-then hit Enter
+
+
+4- Once the admin or the agent  receive the message   ... the admin/agent  will be xssed 
+
+
+
+
+
+
+
+
+Impact:
+XSS can lead the adminstators & agents Session Hijacking,it can also lead to disclosure of sensitive data, CSRF attacks and other critical  attacks on administrators and the webapp directly.
+
+
+
+  
+Screentshoots:
+admin
+https://i.imgur.com/WQIO5PM.png
+agent
+https://i.imgur.com/36iNNKv.png
+user
+https://i.imgur.com/2K98PPQ.png

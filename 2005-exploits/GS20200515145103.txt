@@ -1,0 +1,39 @@
+securecrt: memory corruption in CSI functions CVE-2020-12651
+
+I noticed a vulnerability in SecureCRT that allows a remote system to corrupt memory in the terminal process and execute arbitrary code.
+
+The bug is that if you specify a line number to CSI functions that exceeds INT_MAX, the unsigned integer is used in signed comparisons and wraps around.
+
+https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h3-Functions-using-CSI-_-ordered-by-the-final-character_s_
+
+The terminal has an array of line buffers it uses for managing the current screen, and this bug means you can corrupt buffers outside of those array bounds.
+
+To reproduce this bug, follow the following steps:
+(I tested VT100 and XTerm emulation on Windows 10 x64, I assume otherplatforms/configurations are affected).
+
+
+1. Create a new SSH session, accept all the default settings.
+2. Connect to a remote system, and run this command (I assume gnu printf):
+
+$ printf \"\\e[%uM%*c\" -$((1 << 30)) $COLUMNS A
+
+That's CSI DL (Delete Line), but other line functions work too, e.g. IL, but it requires a longer reproducer:
+
+$ tput clear; tput cup 0 0; for ((i=0; i < 32; i++)); do
+> printf \"\\e[%huL%*c\\" $((-i & 0xffffffff)) $COLUMNS A
+> done
+
+In a real attack this might be an SSH banner or similar.
+
+This bug is subject to a 90 day disclosure deadline. After 90 days elapse,
+the bug report will become visible to the public. The scheduled disclosure
+date is 2020-06-27. Disclosure at an earlier date is possible if
+agreed upon by all parties.
+
+
+Related CVE Numbers: CVE-2020-12651.
+
+
+
+Found by: taviso@google.com
+

